@@ -8,7 +8,7 @@ export default class Container extends React.Component {
 
 render() {
   const allProducts = this.props.products.map((product, index) =>{
-    return (<Item addToFav={this.props.addfavorite} image = {product.imgUrl} key={index} product={product}
+    return (<Item addToCart={this.props.addCart} image = {product.imgUrl} key={index} product={product}
         price={product.price}  name= {product.name}/>
   )})
 

@@ -20,11 +20,31 @@ export default class App extends Component {
     };
   }
 
-  addfavorite = product => {
-    console.log("cart: ", product);
-    const newCart = [...this.state.cart, product];
-    this.setState({ cart: newCart});
-  };
+  addCart = product => {
+    // console.log("cart: ", product);
+    const newCart = [...this.state.cart];
+    // console.log("cart: ", );
+    let productIndex=newCart.indexOf(  product)
+   //check if this product in the cart
+if(productIndex!==-1){
+    // count increase 1
+newCart[productIndex].count+=1
+
+}else{
+    // if it is not there
+    //add it with key count 0
+    product.count=1
+    newCart.push(product)
+}
+// add the product to cart
+
+  this.setState({ cart: newCart});
+}
+   
+
+
+
+    
 
   componentDidMount() {
     axios({
@@ -47,7 +67,7 @@ export default class App extends Component {
   handleChange = event => {
     const searchValue = event.target.value;
     console.log(searchValue);
-    this.setState({ search: searchValue });
+    
 
     const filteredProducts = this.state.products.filter(function(product) {
       return product.name.toLowerCase().includes(searchValue.toLowerCase());
@@ -65,14 +85,12 @@ export default class App extends Component {
     return (
       <div>
         <Router>
-          <Link to="/">Home Page</Link> <Link to="/Item"></Link>{" "}
-          <Link to="/Cart">Cart</Link>
-          <Route exact path="/" component={()=><Container products={this.state.products}
-            addfavorite={this.addfavorite}/>} />
-          <Route path="/Item" component={Item} />
-          <Route path="/Cart" component={Cart} />
-        </Router>
-        <div>
+          <nav>
+          <Link to="/">Home Page</Link> {'  ||  '}
+          <Link to="/Item"></Link> {'  '}
+          <Link to="/Cart">Cart</Link>{'  '}
+          </nav>
+          <div>
           <form>
             <input
               type="text"
@@ -82,13 +100,14 @@ export default class App extends Component {
             />
             <input type="submit" value="Submit" onClick={this.handleSubmit} />
           </form>
-          {/* <Container
-            products={this.state.products}
-            addfavorite={this.addfavorite}
-          /> */}
-
-          <Cart products ={this.state.cart} />
+  
         </div>
+          <Route exact path="/" component ={()=> <Container products={this.state.products}
+          addCart={this.addCart}/>} />
+          <Route path="/Item" component={Item} />
+          <Route path="/Cart" component={()=> <Cart cartProducts ={this.state.cart}/>} />
+        </Router>
+        
       </div>
     );
   }
