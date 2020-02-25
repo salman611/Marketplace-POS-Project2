@@ -40,6 +40,23 @@ newCart[productIndex].count+=1
 
   this.setState({ cart: newCart});
 }
+
+removeCart = product => {
+  const newCart2 = [...this.state.cart];
+  let productIndex1= newCart2.indexOf(product)
+ //check if this product >0
+ if (newCart2.product.count>0){
+//  decrease one
+newCart2[productIndex1].count-=1
+ }
+//  ==1
+else if 
+  (product.count==1){
+// remove for the array cart
+newCart2.splice(product)
+}
+this.setState({ cart: newCart2});
+}
    
 
 
