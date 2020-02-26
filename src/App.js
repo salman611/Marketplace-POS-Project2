@@ -6,7 +6,7 @@ import Cart from "./components/Cart";
 import Item from "./components/Item";
 import NavBar from './components/NavBar'
 import { Button } from 'reactstrap';
-import { Badge } from 'reactstrap';
+
 
 
 
@@ -17,8 +17,7 @@ export default class App extends Component {
       //initial value for all the products
       products: [],
       //initial value for selected prodcuts
-      cart:[],
-      //give the search box empty string
+      cart: [],
       search: "",
       checked: false
     };
@@ -69,18 +68,55 @@ export default class App extends Component {
     }
     this.setState({ cart: secondNewCart });
   };
+  increaseItem = product => {
+    const ThirdNewCart = [...this.state.cart];
+    const ThirdProductIndex = ThirdNewCart.findIndex(p => p.name === product.name);
+    console.log("salman", ThirdNewCart);
+//second solution 
+    // const secondProductIndex = secondNewCart.indexOf(product);
+   
+    //check if this product >0
+    if (ThirdNewCart [ThirdProductIndex].count >= 1) {
+      //  decrease one
+      ThirdNewCart [ThirdProductIndex].count += 1;
+    }
+    //  ==1
+ 
+    this.setState({ cart: ThirdNewCart });
+  };
   //remove all the products in the cart
   removeAll = () => {
     this.setState({ cart: [] });
   };
-toggleCheckedProducts= ()=>{
- 
-}
-  // removeSelectedProducts= () =>{
-  //   if (product.checked === true)
-  //     product.checked= false
 
-  // }
+// make the function to check if the product is selected or not, which is recived argument from Cart componenet
+  toggleCheckedProducts= (recievedProduct)=>{
+   console.log('dsfsdfsdf',recievedProduct)
+  let newArray =[...this.state.cart]
+ let index =newArray.indexOf(recievedProduct)
+ if(newArray[index].selected ===true){
+  newArray[index].selected=false
+ }else{
+  newArray[index].selected=true
+ }
+   this.setState({cart:newArray})
+ 
+ }
+ removeSelectedProduct=(selectedProduct) =>{
+  let newArrayAfterRemovedItem =[...this.state.cart]
+  console.log(newArrayAfterRemovedItem);
+  
+  newArrayAfterRemovedItem.filter((p)=>{
+  return p.selected!==true
+  })
+
+  console.log(newArrayAfterRemovedItem, 'after filter');
+  
+  this.setState({cart:newArrayAfterRemovedItem})
+ }
+
+
+
 
   // connect to API
   componentDidMount() {
@@ -129,8 +165,11 @@ toggleCheckedProducts= ()=>{
       <div>
         <Router>
   
-    <NavBar/>
-          <nav>
+    <NavBar handleChange= {this.handleChange}
+     handleSubmit= {this.handleSubmit}
+    />
+    
+          {/* <nav>
 
             <Link to="/">Home Page</Link> {"  ||  "}
             <Link to="/Item"></Link> {"  "}
@@ -146,9 +185,9 @@ toggleCheckedProducts= ()=>{
                 onChange={this.handleChange}
               />
               <Button outline color="info" onClick={this.handleSubmit}>submit</Button>{' '}
-              {/* <input type="submit" value="Submit" onClick={this.handleSubmit} /> */}
+              <input type="submit" value="Submit" onClick={this.handleSubmit} />
             </form>
-          </div>
+          </div> */}
           <Route
             exact
             path="/"
@@ -167,7 +206,9 @@ toggleCheckedProducts= ()=>{
                 cartProducts={this.state.cart}
                 removeCart={this.removeCart}
                 removeAll={this.removeAll}
-                remveChecked={this.remveChecked}
+                toggleChecked={this.toggleCheckedProducts}
+                removeSelectedProduct= {this.removeSelectedProduct}
+                increaseItem={this.increaseItem}
               />
             )}
           />

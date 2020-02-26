@@ -10,7 +10,8 @@ export default class Item extends React.Component {
     <Col xs="4">  
     <Card >
     <CardImg  
-           src={this.props.image}  alt={this.props.name} />
+          height="200"
+          width="200" src={this.props.image}  alt={this.props.name} />
     <CardBody>
       <CardTitle> {this.props.name}</CardTitle>
       <CardSubtitle>Price: ${this.props.price}</CardSubtitle>

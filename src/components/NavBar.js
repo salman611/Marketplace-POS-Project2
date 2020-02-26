@@ -1,61 +1,33 @@
 
 import React from 'react';
-import { Nav, NavItem } from 'reactstrap';
 import {Link} from 'react-router-dom';
+import { Navbar,Nav,Form,FormControl,Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const NavBar = (props) => {
+
+
   return (
-    <div>
-      <p>Hello....</p>
-      <Nav>
-      {/* <NavbarBrand href="/">Home Page</NavbarBrand> */}
-        <NavItem>
-          <Link to="/">Home Page</Link>
-        </NavItem>
-        <NavItem>
-        <Link to="/Cart">Cart</Link>
-        </NavItem>
-      </Nav>
-     
-    </div>
-  );
+ <div>
+    <Navbar bg="dark" variant="dark">
+    <Navbar.Brand href="/">Salman</Navbar.Brand>
+    <Nav className="mr-auto">
+      <LinkContainer to="/">
+      <Nav.Link>Home Page</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/Cart">
+      <Nav.Link>Cart</Nav.Link>
+      </LinkContainer>
+    {/* <Link to="/">Home Page</Link>
+    <Link to="/Cart">Cart</Link> */}
+    </Nav>
+    <Form inline>
+      <FormControl type="text" placeholder="Search for shoes..." className="mr-sm-2" />
+      <Button variant="outline-info" >Search</Button>
+    </Form>
+  </Navbar>
+  </div>
+    );
 }
+export default NavBar; 
 
-export default NavBar;
-// import React, { useState } from 'react';
-// import {
-//   Collapse,
-//   Navbar,
-//   NavbarBrand,
-//   Nav,
-//   NavItem,
-//   NavLink,
-//   NavbarText
-// } from 'reactstrap';
-
-// const NavBar = (props) => {
-//   const [isOpen, setIsOpen] = useState(false);
-
-//   const toggle = () => setIsOpen(!isOpen);
-
-//   return (
-//     <div>
-//       <Navbar color="light" light expand="md">
-//         <NavbarBrand href="/">Home Page</NavbarBrand>
-   
-//         <Collapse isOpen={isOpen} navbar>
-//           <Nav className="mr-auto" navbar>
-      
-//             <NavItem>
-//               <NavLink href="/Cart/">Cart</NavLink>
-//             </NavItem>
-           
-//           </Nav>
-//           <NavbarText>Search</NavbarText>
-//         </Collapse>
-//       </Navbar>
-//     </div>
-//   );
-// }
-
-// export default NavBar;
