@@ -4,11 +4,8 @@ import axios from "axios";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Cart from "./components/Cart";
 import Item from "./components/Item";
-import NavBar from './components/NavBar'
-import { Button } from 'reactstrap';
-
-
-
+import NavBar from "./components/NavBar";
+import { Button } from "reactstrap";
 
 export default class App extends Component {
   constructor(props) {
@@ -19,6 +16,7 @@ export default class App extends Component {
       //initial value for selected prodcuts
       cart: [],
       search: "",
+      // to check if the product got selected in the Cart component to delete it
       checked: false
     };
   }
@@ -41,21 +39,23 @@ export default class App extends Component {
       //add it with key count 0
       product.count = 1;
       newCart.push(product);
-
     }
     // add the product to cart
-
-    this.setState({ cart: newCart })
-    
+    this.setState({ cart: newCart });
   };
   // remove product form Cart
-  removeCart = product => {
+  //function to reduce the item in cart
+  reduceItem = product => {
+    // copy the current array
     const secondNewCart = [...this.state.cart];
-    const secondProductIndex = secondNewCart.findIndex(p => p.name === product.name);
+    //find the index of the product that is selected
+    const secondProductIndex = secondNewCart.findIndex(
+      p => p.name === product.name
+    );
     console.log("salman", secondNewCart);
-//second solution 
+    //second solution
     // const secondProductIndex = secondNewCart.indexOf(product);
-   
+
     //check if this product >0
     if (secondNewCart[secondProductIndex].count > 1) {
       //  decrease one
@@ -68,20 +68,23 @@ export default class App extends Component {
     }
     this.setState({ cart: secondNewCart });
   };
+  //function to increase the item in cart
   increaseItem = product => {
     const ThirdNewCart = [...this.state.cart];
-    const ThirdProductIndex = ThirdNewCart.findIndex(p => p.name === product.name);
+    const ThirdProductIndex = ThirdNewCart.findIndex(
+      p => p.name === product.name
+    );
     console.log("salman", ThirdNewCart);
-//second solution 
+    //second solution
     // const secondProductIndex = secondNewCart.indexOf(product);
-   
+
     //check if this product >0
-    if (ThirdNewCart [ThirdProductIndex].count >= 1) {
+    if (ThirdNewCart[ThirdProductIndex].count >= 1) {
       //  decrease one
-      ThirdNewCart [ThirdProductIndex].count += 1;
+      ThirdNewCart[ThirdProductIndex].count += 1;
     }
     //  ==1
- 
+
     this.setState({ cart: ThirdNewCart });
   };
   //remove all the products in the cart
@@ -89,34 +92,31 @@ export default class App extends Component {
     this.setState({ cart: [] });
   };
 
-// make the function to check if the product is selected or not, which is recived argument from Cart componenet
-  toggleCheckedProducts= (recievedProduct)=>{
-   console.log('dsfsdfsdf',recievedProduct)
-  let newArray =[...this.state.cart]
- let index =newArray.indexOf(recievedProduct)
- if(newArray[index].selected ===true){
-  newArray[index].selected=false
- }else{
-  newArray[index].selected=true
- }
-   this.setState({cart:newArray})
- 
- }
- removeSelectedProduct=(selectedProduct) =>{
-  let newArrayAfterRemovedItem =[...this.state.cart]
-  console.log(newArrayAfterRemovedItem);
-  
-  newArrayAfterRemovedItem.filter((p)=>{
-  return p.selected!==true
-  })
+  // make the function to check if the product is selected or not, which is recived argument from Cart componenet
+  toggleCheckedProducts = recievedProduct => {
+    console.log("dsfsdfsdf", recievedProduct);
+    let newArray = [...this.state.cart];
+    let index = newArray.indexOf(recievedProduct);
+    if (newArray[index].selected === true) {
+      newArray[index].selected = false;
+    } else {
+      newArray[index].selected = true;
+    }
+    this.setState({ cart: newArray });
+  };
+  //function to remove all the products that are selected in the Cart
+  removeSelectedProduct = selectedProduct => {
+    let newArrayAfterRemovedItem = this.state.cart;
+    console.log(newArrayAfterRemovedItem);
 
-  console.log(newArrayAfterRemovedItem, 'after filter');
-  
-  this.setState({cart:newArrayAfterRemovedItem})
- }
+    newArrayAfterRemovedItem.filter(p => {
+      return p.selected !== true;
+    });
 
+    console.log(newArrayAfterRemovedItem, "after filter");
 
-
+    this.setState({ cart: newArrayAfterRemovedItem });
+  };
 
   // connect to API
   componentDidMount() {
@@ -149,7 +149,7 @@ export default class App extends Component {
     this.setState({ products: filteredProducts });
   };
 
-  //sumbit the search 
+  //sumbit the search
   handleSubmit = event => {
     event.preventDefault();
     console.log("Clicked!");
@@ -160,15 +160,14 @@ export default class App extends Component {
   //     this.setState({ checked: event.target.checked })
 
   render() {
-
     return (
       <div>
         <Router>
-  
-    <NavBar handleChange= {this.handleChange}
-     handleSubmit= {this.handleSubmit}
-    />
-    
+          <NavBar
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+          />
+
           {/* <nav>
 
             <Link to="/">Home Page</Link> {"  ||  "}
@@ -202,12 +201,13 @@ export default class App extends Component {
           <Route
             path="/Cart"
             component={() => (
+              //recive Cart and send to it props
               <Cart
                 cartProducts={this.state.cart}
-                removeCart={this.removeCart}
+                reduceItem={this.reduceItem}
                 removeAll={this.removeAll}
                 toggleChecked={this.toggleCheckedProducts}
-                removeSelectedProduct= {this.removeSelectedProduct}
+                removeSelectedProduct={this.removeSelectedProduct}
                 increaseItem={this.increaseItem}
               />
             )}
