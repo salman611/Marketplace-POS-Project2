@@ -1,29 +1,61 @@
-import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+
+import React from 'react';
+import { Nav, NavItem } from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 const NavBar = (props) => {
-  const [collapsed, setCollapsed] = useState(true);
-
-  const toggleNavbar = () => setCollapsed(!collapsed);
-
   return (
     <div>
-      <Navbar color="faded" light>
-        <NavbarBrand href="/" className="mr-auto">reactstrap</NavbarBrand>
-        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-        <Collapse isOpen={!collapsed} navbar>
-          <Nav navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
+      <p>Hello....</p>
+      <Nav>
+      {/* <NavbarBrand href="/">Home Page</NavbarBrand> */}
+        <NavItem>
+          <Link to="/">Home Page</Link>
+        </NavItem>
+        <NavItem>
+        <Link to="/Cart">Cart</Link>
+        </NavItem>
+      </Nav>
+     
     </div>
   );
 }
 
 export default NavBar;
+// import React, { useState } from 'react';
+// import {
+//   Collapse,
+//   Navbar,
+//   NavbarBrand,
+//   Nav,
+//   NavItem,
+//   NavLink,
+//   NavbarText
+// } from 'reactstrap';
+
+// const NavBar = (props) => {
+//   const [isOpen, setIsOpen] = useState(false);
+
+//   const toggle = () => setIsOpen(!isOpen);
+
+//   return (
+//     <div>
+//       <Navbar color="light" light expand="md">
+//         <NavbarBrand href="/">Home Page</NavbarBrand>
+   
+//         <Collapse isOpen={isOpen} navbar>
+//           <Nav className="mr-auto" navbar>
+      
+//             <NavItem>
+//               <NavLink href="/Cart/">Cart</NavLink>
+//             </NavItem>
+           
+//           </Nav>
+//           <NavbarText>Search</NavbarText>
+//         </Collapse>
+//       </Navbar>
+//     </div>
+//   );
+// }
+
+// export default NavBar;

@@ -1,6 +1,11 @@
 import React from "react";
+import { Button } from 'reactstrap';
 export default class Cart extends React.Component {
+  
+  
+  
   render() {
+
    
     const allCart = this.props.cartProducts.map((product, index) => {
       //  let product=  arr[i]
@@ -11,7 +16,9 @@ export default class Cart extends React.Component {
           <p>Product Price: {product.price}</p>
           <button onClick={() => this.props.removeCart(product)}>
             Remove from Cart </button>
-          <img src={product.imgUrl} height="200" width="200" />
+            <button onClick={() => this.props.remveChecked(product)}>
+            Select </button>
+          <img src={product.imgUrl} alt="" height="200" width="200" />
           <p>Count: {product.count}</p>
           <p>Total Product Price: {product.price * product.count}</p>
         </div>
@@ -27,8 +34,10 @@ export default class Cart extends React.Component {
 
     return (
       <div>
-        <button onClick={() => this.props.removeAll(this.props.product)}>
-          Remove All  </button>
+        <Button outline color="danger" onClick={() => this.props.removeAll(this.props.product)}>Remove All</Button>
+
+        {/* <button onClick={() => this.props.removeAll(this.props.product)}> */}
+          {/* Remove All  </button> */}
         {console.log(this.props.cartProducts)}
         {allCart}
         Total price: {total}
