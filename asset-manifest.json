@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Marketplace-POS-Project2/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/Marketplace-POS-Project2/static/js/main.fdeb491a.chunk.js",
+    "main.js.map": "/Marketplace-POS-Project2/static/js/main.fdeb491a.chunk.js.map",
+    "runtime-main.js": "/Marketplace-POS-Project2/static/js/runtime-main.5f881bf9.js",
+    "runtime-main.js.map": "/Marketplace-POS-Project2/static/js/runtime-main.5f881bf9.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/Marketplace-POS-Project2/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.c44ea21b.chunk.js": "/Marketplace-POS-Project2/static/js/2.c44ea21b.chunk.js",
+    "static/js/2.c44ea21b.chunk.js.map": "/Marketplace-POS-Project2/static/js/2.c44ea21b.chunk.js.map",
+    "index.html": "/Marketplace-POS-Project2/index.html",
+    "precache-manifest.b2eeb5b77e681ff654ea0eaebc2ce14d.js": "/Marketplace-POS-Project2/precache-manifest.b2eeb5b77e681ff654ea0eaebc2ce14d.js",
+    "service-worker.js": "/Marketplace-POS-Project2/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/Marketplace-POS-Project2/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.5ecd60fb.chunk.css.map": "/Marketplace-POS-Project2/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.c44ea21b.chunk.js.LICENSE.txt": "/Marketplace-POS-Project2/static/js/2.c44ea21b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5f881bf9.js",
+    "static/css/2.47e06e2e.chunk.css",
+    "static/js/2.c44ea21b.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.fdeb491a.chunk.js"
+  ]
+}
