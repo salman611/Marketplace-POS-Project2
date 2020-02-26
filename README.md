@@ -6,7 +6,7 @@
 
 The project about building a marketplace where user can add items to buy it. also, the the application is could be used as a point of sale software.
 ## Wireframe
-![Marketplace wireframe](./Wireframe.png)
+![Marketplace wireframe](./wireframe.png)
 
 
 ## Technologies used
