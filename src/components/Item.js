@@ -26,10 +26,11 @@ export default class Item extends React.Component {
             <CardTitle> {this.props.name}</CardTitle>
             <CardSubtitle>Price: ${this.props.price}</CardSubtitle>
     {/* cart icon */}
-            {/* <IconButton color="primary" aria-label="add to shopping cart" onClick={() => this.props.addToCart(this.props.product)}
+            <IconButton color="primary" aria-label="add to shopping cart" onClick={() => this.props.addToCart(this.props.product)}
             >
         <AddShoppingCartIcon />
-      </IconButton> */}
+      </IconButton>
+         {/* other button for the same usage */}
             <Button
               outline
               color="secondary"
