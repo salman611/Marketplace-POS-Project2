@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Cart from "./components/Cart";
 import Item from "./components/Item";
 import NavBar from "./components/NavBar";
-import { Button } from "reactstrap";
+
 
 export default class App extends Component {
   constructor(props) {
@@ -106,7 +106,7 @@ export default class App extends Component {
   };
   //function to remove all the products that are selected in the Cart
   removeSelectedProduct = selectedProduct => {
-    let newArrayAfterRemovedItem = this.state.cart;
+    let newArrayAfterRemovedItem = [...this.state.cart];
     console.log(newArrayAfterRemovedItem);
 
     newArrayAfterRemovedItem.filter(p => {
@@ -164,11 +164,11 @@ export default class App extends Component {
       <div>
         <Router>
           <NavBar
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
           />
 
-          {/* <nav>
+{/* // -------------------------------------------------------------------
+// normal nav withoit navbar from react boostrap */}
+          {/* <nav> 
 
             <Link to="/">Home Page</Link> {"  ||  "}
             <Link to="/Item"></Link> {"  "}
@@ -187,10 +187,14 @@ export default class App extends Component {
               <input type="submit" value="Submit" onClick={this.handleSubmit} />
             </form>
           </div> */}
+
+{/* // ------------------------------------------------------------------- */}
+
           <Route
             exact
             path="/"
             component={() => (
+              // recivec containerPorducts and send to it props 
               <ContainerPorducts
                 products={this.state.products}
                 addCart={this.addCart}
@@ -201,7 +205,7 @@ export default class App extends Component {
           <Route
             path="/Cart"
             component={() => (
-              //recive Cart and send to it props
+              //recive Cart and send to it props 
               <Cart
                 cartProducts={this.state.cart}
                 reduceItem={this.reduceItem}

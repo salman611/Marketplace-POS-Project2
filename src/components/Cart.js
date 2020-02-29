@@ -1,3 +1,4 @@
+//child of app.js
 import React from "react";
 import {
   Card,
@@ -7,27 +8,37 @@ import {
   CardTitle,
   CardSubtitle,
   Button,
-  Col,
+  Col
 } from "reactstrap";
 import { Container, Row } from "reactstrap";
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
-
+import { ListGroup, ListGroupItem } from "react-bootstrap";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 
 export default class Cart extends React.Component {
   render() {
+
+    // map over the array to get each key inside each obeject that is send from app.js
+
     const allCart = this.props.cartProducts.map((product, index) => {
+
       // declar the condition to check if the product is selected or not
+
       let textSelectedButton = "Unselect this item";
       if (product.selected !== true) {
         textSelectedButton = "Select this item";
       } else {
         textSelectedButton = "Unselect this item";
       }
-      //  let product=  arr[i]
+
       return (
+
+        // add col xs="5" to arrange the cards to be shown 2 next to each other
+
         <Col xs="5">
+
+          {/* card from reactstrap to contain each product  image, price , name */}
+
           <Card>
             <CardImg
               height="200"
@@ -38,24 +49,32 @@ export default class Cart extends React.Component {
             <CardBody>
               <CardTitle> {product.name}</CardTitle>
               <CardSubtitle>Price: ${product.price}</CardSubtitle>
-              <RemoveCircleIcon 
+
+              {/* // reduce icon to decrease each product count  */}
+
+              <RemoveCircleIcon
                 outline
                 color="secondary"
                 onClick={() => this.props.reduceItem(product)}
               >
                 {" "}
                 Reduce Item{" "}
-                </RemoveCircleIcon >
-                <AddCircleIcon
+              </RemoveCircleIcon>
+
+              {/* // add icon to increase each product count  */}
+
+              <AddCircleIcon
                 outline
                 color="secondary"
                 onClick={() => this.props.increaseItem(product)}
               >
                 {" "}
                 Increase Item{" "}
-                </AddCircleIcon>
-           
-            <Button
+              </AddCircleIcon>
+
+              {/* // toggle button to toggle between select and unselect product  */}
+
+              <Button
                 outline
                 color="secondary"
                 onClick={() => this.props.toggleChecked(product)}
@@ -73,7 +92,11 @@ export default class Cart extends React.Component {
         </Col>
       );
     });
+
+    // -------------------------------------------------------------------
+
     //without reactstrap
+
     //   return (
     //     <div key={index}>
     //       <p>{index + 1}.</p>
@@ -92,19 +115,24 @@ export default class Cart extends React.Component {
     //   );
     // });
 
+    // -------------------------------------------------------------------
 
-    // to find the total price for all products 
+    // to find the total price for all products
+
     let total = this.props.cartProducts.reduce((acc, elem, i) => {
       return acc + elem.price * elem.count;
     }, 0);
 
-    //to find the total counts for all products 
+    //to find the total counts for all products
+
     let totalCount = this.props.cartProducts.reduce((acc, elem, i) => {
       return acc + elem.count;
     }, 0);
 
     return (
       <div>
+        {/* // button to remove all products  */}
+
         <Button
           outline
           color="danger"
@@ -112,6 +140,8 @@ export default class Cart extends React.Component {
         >
           Remove All
         </Button>
+
+        {/* // button to remove selected products  */}
         <Button
           outline
           color="danger"
@@ -119,20 +149,40 @@ export default class Cart extends React.Component {
         >
           Remove selected Items{" "}
         </Button>
-        <ListGroup horizontal >
-        <ListGroup.Item action variant="info">
-        Total price: {total} 
-       </ListGroup.Item>
-       <ListGroup.Item action variant="info">
-       Total Count: {totalCount}
-       </ListGroup.Item>
-       <ListGroup.Item action variant="info">
-       Total Product Types: {this.props.cartProducts.length}
-       </ListGroup.Item>
-       </ListGroup>
-      
-  {/* other solution  */}
-       {/* <FormControl>
+
+        {/* design to have total price,count,types for all products   */}
+
+        <ListGroup horizontal>
+          <ListGroup.Item action variant="info">
+            Total price: {total}
+          </ListGroup.Item>
+          <ListGroup.Item action variant="info">
+            Total Count: {totalCount}
+          </ListGroup.Item>
+          <ListGroup.Item action variant="info">
+            Total Product Types: {this.props.cartProducts.length}
+          </ListGroup.Item>
+        </ListGroup>
+        <Container>
+          <Row>
+            {console.log(this.props.cartProducts)}
+            {allCart}
+          </Row>
+        </Container>
+        ;
+      </div>
+    );
+  }
+}
+
+{
+  /* // -------------------------------------------------------------------   */
+}
+{
+  /* another style for total price counts, and types  */
+}
+{
+  /* <FormControl>
         <InputLabel htmlFor="input-with-icon-adornment"> Total price: {total} </InputLabel>
         <Input
           id="input-with-icon-adornment"
@@ -151,24 +201,15 @@ export default class Cart extends React.Component {
           id="input-with-icon-adornment"
     
         />
-      </FormControl> */}
-
-    
-        
-        {/* Total price: {total}
+      </FormControl> */
+}
+{
+  /* Total price: {total}
         {" || "}
         Total Count: {totalCount}
         {" || "}
-        Total Product Types: {this.props.cartProducts.length} */}
-        <Container>
-          <Row>
-            {console.log(this.props.cartProducts)}
-            {allCart}
-          </Row>
-        </Container>
-        ;
-      </div>
-    );
-  }
+        Total Product Types: {this.props.cartProducts.length} */
 }
-
+{
+  /* // -------------------------------------------------------------------   */
+}

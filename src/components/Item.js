@@ -9,12 +9,18 @@ import {
   Button,
   Col
 } from "reactstrap";
-import IconButton from '@material-ui/core/IconButton';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import IconButton from "@material-ui/core/IconButton";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 export default class Item extends React.Component {
   render() {
     return (
+
+      // col to make 3 products align in each row from reactstrap
+
       <Col xs="4">
+
+{/* card from reactstrap to contain each product  image, price , name */}
+
         <Card>
           <CardImg
             height="200"
@@ -25,12 +31,19 @@ export default class Item extends React.Component {
           <CardBody>
             <CardTitle> {this.props.name}</CardTitle>
             <CardSubtitle>Price: ${this.props.price}</CardSubtitle>
-    {/* cart icon */}
-            <IconButton color="primary" aria-label="add to shopping cart" onClick={() => this.props.addToCart(this.props.product)}
+
+            {/* cart icon */}
+
+            <IconButton
+              color="primary"
+              aria-label="add to shopping cart"
+              onClick={() => this.props.addToCart(this.props.product)}
             >
-        <AddShoppingCartIcon />
-      </IconButton>
-         {/* other button for the same usage */}
+              <AddShoppingCartIcon />
+            </IconButton>
+
+            {/* other button for the same usage */}
+
             <Button
               outline
               color="secondary"
@@ -45,7 +58,10 @@ export default class Item extends React.Component {
     );
   }
 }
-//without react boostrap 
+
+// -------------------------------------------------------------------
+
+//without react boostrap
 //       <div>
 //         <p>{this.props.name}</p>
 //         <p> Price: ${this.props.price}</p>
@@ -64,4 +80,3 @@ export default class Item extends React.Component {
 //     );
 //   }
 // }
-
