@@ -105,17 +105,17 @@ export default class App extends Component {
     this.setState({ cart: newArray });
   };
   //function to remove all the products that are selected in the Cart
-  removeSelectedProduct = selectedProduct => {
+  removeSelectedProduct = () => {
     let newArrayAfterRemovedItem = [...this.state.cart];
     console.log(newArrayAfterRemovedItem);
 
-    newArrayAfterRemovedItem.filter(p => {
+    const t= newArrayAfterRemovedItem.filter(p => {
       return p.selected !== true;
     });
 
     console.log(newArrayAfterRemovedItem, "after filter");
 
-    this.setState({ cart: newArrayAfterRemovedItem });
+    this.setState({ cart: t });
   };
 
   // connect to API
@@ -148,6 +148,7 @@ export default class App extends Component {
 
     this.setState({ products: filteredProducts });
   };
+
 
   //sumbit the search
   handleSubmit = event => {

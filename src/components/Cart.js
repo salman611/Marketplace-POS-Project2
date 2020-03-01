@@ -26,8 +26,10 @@ export default class Cart extends React.Component {
 
       let textSelectedButton = "Unselect this item";
       if (product.selected !== true) {
+        // yes
         textSelectedButton = "Select this item";
       } else {
+        // no
         textSelectedButton = "Unselect this item";
       }
 
@@ -93,6 +95,7 @@ export default class Cart extends React.Component {
       );
     });
 
+    // console.log(this.props)
     // -------------------------------------------------------------------
 
     //without reactstrap
@@ -136,16 +139,21 @@ export default class Cart extends React.Component {
         <Button
           outline
           color="danger"
-          onClick={() => this.props.removeAll(this.props.product)}
+          onClick={() => this.props.removeAll()}
         >
           Remove All
         </Button>
-
         {/* // button to remove selected products  */}
         <Button
           outline
           color="danger"
-          onClick={() => this.props.removeSelectedProduct(this.props.product)}
+          
+          // becuae we will not pass props we can write it  onClick={this.props.removeSelectedProduct}
+          //if we want to pass something we have to put function before ex, 
+          //    onClick= {() this.props.removeSelectedProduct ()} 
+          onClick={
+            this.props.removeSelectedProduct
+         }
         >
           Remove selected Items{" "}
         </Button>
